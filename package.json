@@ -1,0 +1,14 @@
+{
+  "name": "ws_project2",
+  "version": "1.0.0",
+  "description": "WS for VOD managment - Complaints",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Or Adar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}

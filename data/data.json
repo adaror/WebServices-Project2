@@ -1,7 +1,7 @@
 {
   "service-type":"complains",
   "complains":[
-    {"id":1,
+    {"complainId":1,
      "type":"Services",
       "complains":[
         {"name":"Or Adar","complain":"It takes you 3 hour to answer the phone!"},
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id":2,
+      "complainId":2,
       "type":"Faults",
       "complains":[
         {"name":"Gal Amitai","complain":"I can't see new movies"},
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id":3,
+      "complainId":3,
       "type":"Content",
 
       "complaints":[

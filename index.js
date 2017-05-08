@@ -45,10 +45,7 @@ app.get('/getComplainByUserAndType/:user_name/:type_name',
 
 //-------------------the API documentation----------------------
 
-app.all('/api',
-    (req,res)=>{
-    res.sendFile(path.join(__dirname + '/api/index.html'));
-    });
+app.use('/api', express.static('api'));
 
 //----------Fallback - return error if one of the parameters was wrong-----------
 app.all('*',

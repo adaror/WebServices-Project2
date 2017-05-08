@@ -40,7 +40,7 @@
                 <div class="panel-body">
                     <p>In order to get all the complains data you need first to
                     approach the server in <mark>GET</mark> method.
-                    you need to approach the following address:<code>http://MyService/showAllComplains</code>.
+                    you need to approach the following address:<code class="smallc">https://complainservice.herokuapp.com/showAllComplains</code>.
                     Then you will get the full Json file that look something like this:<br>
                     <code>
                         {
@@ -78,7 +78,7 @@
                         you need send parameters in <mark>POST</mark> method!.
                         in order to get complains of specific user by complain type you need to send the
                         <mark>type name</mark> inside variable that called <mark>type_name</mark> in the following route<br>
-                        <code>http://MyService/getType</code><br>
+                        <code>https://complainservice.herokuapp.com/getType</code><br>
                         for example if you send the type <mark>Services</mark> your JSON will look something like:<br>
                         <code>
                             [{<br>
@@ -116,10 +116,10 @@
                         In order to do that you need to send 2 parameters in <mark>GET</mark> method.<br>
                         the parameters are <mark>user_name</mark> for the user name and <mark>type_name</mark> for the type name.
                         you need to send the parameters in the following route<br>
-                        <code class="smallc">http://MyService//getComplainByUserAndType/user_name/type_name'</code> just replace the user_name
+                        <code class="smallc">https://complainservice.herokuapp.com/getComplainByUserAndType/<br>user_name/type_name'</code> just replace the user_name
                         and the type_name to the specific user and type names.
                         for example if i wand to get the complains of Or Adar inside the services complain my route will look like<br>
-                        <code class="smallc">http://MyService//getComplainByUserAndType/Or Adar/Services'</code><br>
+                        <code class="smallc">https://complainservice.herokuapp.com/getComplainByUserAndType/Or Adar/Services'</code><br>
                         and the result will be a JSON that will look like:<br>
                         <code>
                             {<br>

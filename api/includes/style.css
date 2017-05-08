@@ -1,0 +1,38 @@
+body{
+    background-color: #8c8c8c;
+}
+
+h1{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+}
+
+h2{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+p{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+}
+
+header{
+    text-align: center;
+    border-bottom: 2px solid #737373;
+}
+
+.pan{
+    position: relative;
+    width: 600px;
+    height: 100%;
+    top:25px;
+    margin:0 auto;
+}
+
+.panHead{
+    text-align: center;
+}
+
+.smallc{
+    font-size: 16px;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="includes/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/style.css">
+</head>
+<body>
+    <header>
+        <div class="row">
+            <div>
+                <h1>Complains Service API</h1>
+            </div>
+        </div>
+
+    </header>
+    <div class="container">
+        <div class="row">
+        <div class="panel panel-default pan">
+            <div class="panel-heading panHead">
+                <h2>Complain Web Service</h2>
+            </div>
+            <div class="panel-body">
+                <p>This is the API for the VOD complain web Service.<br>
+                    In my complain web service you will be able to get all the complains data,
+                    look for specific complain by type(service,faults etc..)
+                    and search for specific users complains of certain type.<br>
+                    all the result will return as JSON object (even the error message).</p>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default pan">
+                <div class="panel-heading panHead">
+                    <h2>Get all the complains data</h2>
+                </div>
+                <div class="panel-body">
+                    <p>In order to get all the complains data you need first to
+                    approach the server in <mark>GET</mark> method.
+                    you need to approach the following address:<code>http://MyService/showAllComplains</code>.
+                    Then you will get the full Json file that look something like this:<br>
+                    <code>
+                        {
+                        "service-type":"complains",<br>
+                        "complains":[<br>
+                        {"complainId":1,<br>
+                        "type":"Services",<br>
+                        "complains":[<br>
+                        {"name":"Or Adar","complain":"It takes you 3 hour to answer the phone!"},<br>
+                        {"name":"Or Adar","complain":"Your guider was a mess"},<br>
+                        {"name":"Nurit Haimovich","complain":"The Service provider was rude!"},<br>
+                        {"name":"Uri Portnoy","complain":"You charge me 4% higher than usual!"}]
+                        }
+                    </code>
+                        <br>Obviously the real Json file will be much longer but as you can see you get the type of the complains<br>
+                        the complains itself inside complains array and the complain ID.<br>
+                        For example if i want to get the complain type i need to write<br>
+                        <code>data.type</code> (data is the response variable)<br>
+                        and in order to get the name of the first complain, the code should look something like:<br>
+                        <code>data.complains[1].name</code>
+                    </p>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default pan">
+                <div class="panel-heading panHead">
+                    <h2>Get complains by certain type</h2>
+                </div>
+                <div class="panel-body">
+                    <br>There are certain types of complains in the data base.
+                    for now there are <mark>Service,Faults and Contents</mark>.<br>
+                        inside each type of content there are complains of different user.
+                        you need send parameters in <mark>POST</mark> method!.
+                        in order to get complains of specific user by complain type you need to send the
+                        <mark>type name</mark> inside variable that called <mark>type_name</mark> in the following route<br>
+                        <code>http://MyService/getType</code><br>
+                        for example if you send the type <mark>Services</mark> your JSON will look something like:<br>
+                        <code>
+                            [{<br>
+                            "name": "Or Adar",<br>
+                            "complain": "It takes you 3 hour to answer the phone!"<br>
+                            },<br>
+                            {<br>
+                            "name": "Or Adar",<br>
+                            "complain": "Your guider was a mess"<br>
+                            },<br>
+                            {<br>
+                            "name": "Nurit Haimovich",<br>
+                            "complain": "The Service provider was rude!"<br>
+                            },<br>
+                            {<br>
+                            "name": "Uri Portnoy",<br>
+                            "complain": "You charge me 4% higher than usual!"<br>
+                            }<br>
+                            ]<br>
+                        </code>
+                    you will get an array of user's complains.
+                    </p>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+    </div>
+        <div class="row">
+            <div class="panel panel-default pan">
+                <div class="panel-heading panHead">
+                    <h2>Get Complains of specific user in specific type</h2>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        The last service is to get a specific user complains inside a specific type of complain.
+                        In order to do that you need to send 2 parameters in <mark>GET</mark> method.<br>
+                        the parameters are <mark>user_name</mark> for the user name and <mark>type_name</mark> for the type name.
+                        you need to send the parameters in the following route<br>
+                        <code class="smallc">http://MyService//getComplainByUserAndType/user_name/type_name'</code> just replace the user_name
+                        and the type_name to the specific user and type names.
+                        for example if i wand to get the complains of Or Adar inside the services complain my route will look like<br>
+                        <code class="smallc">http://MyService//getComplainByUserAndType/Or Adar/Services'</code><br>
+                        and the result will be a JSON that will look like:<br>
+                        <code>
+                            {<br>
+                            result: [<br>
+                            {<br>
+                            name: "Or Adar",<br>
+                            complain: "It takes you 3 hour to answer the phone!"<br>
+                            },<br>
+                            {<br>
+                            name: "Or Adar",<br>
+                            complain: "Your guider was a mess"<br>
+                            }<br>
+                            ]<br>
+                            }<br>
+                        </code>
+                        you will get an array under the name result.
+                        so for example if i want the first complain in need to write
+                        <code>res.result[1].complain</code> (res is the response object).
+                    </p>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+    </div>
+        <div class="row">
+            <div class="panel panel-default pan">
+                <div class="panel-heading panHead">
+                    <h2>Error Json</h2>
+                </div>
+                <div class="panel-body">
+                    <p>If for some reason error will occur you will get the following JSON<br>
+                    <code>
+                        {<br>
+                        Error: "No Parameters Found"<br>
+                        }<br>
+                    </code>
+                    </p>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+    </div>
+    </div>
+</body>
+</html>

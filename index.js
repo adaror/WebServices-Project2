@@ -5,6 +5,7 @@ const express         = require('express'),
       bodyParser      = require('body-parser'),
       app             = express(),
       complainModule  = require('./complain_module'),
+      path            = require('path'),
       port            = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -41,6 +42,13 @@ app.get('/getComplainByUserAndType/:user_name/:type_name',
     res.status(200).json(parameters);
     }
 });
+
+//-------------------the API documentation----------------------
+
+app.all('/api',
+    (req,res)=>{
+    res.sendFile(path.join(__dirname + '/api/index.html'));
+    });
 
 //----------Fallback - return error if one of the parameters was wrong-----------
 app.all('*',

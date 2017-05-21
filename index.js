@@ -6,41 +6,41 @@ const express         = require('express'),
       app             = express(),
       complainModule  = require('./complain_module'),
       path            = require('path'),
-      port            = process.env.PORT || 3000;
+      port            = process.env.PORT || 3000,
+      dbFunctions     = require('./db_functions');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 //-----------Send all JSON by GET method------------
 app.get('/showAllComplains',
-    (req,res)=>{
-    let allComplains = complainModule.getAllComplains();
-    res.status(200).json(allComplains);
+    (req,res,next)=>{
+    dbFunctions.allComplains().then((result)=>{
+   if (result.length===0){
+       next();}
+else{res.json(result);};
+    }),(error)=>{next();};
 });
 
 //----------Send Json of complain by complain type using POST------
 app.post('/getType/',
     (req,res,next)=>{
     let type = req.body.type_name;
-    let parameters = complainModule.getByType(type);//call the module function
-   if (parameters == false){                        //if the module return false then fallback
-       next();
-   }else{
-   res.status(200).json(parameters);}
+    dbFunctions.getByType(type).then((result)=>{          //call the module function
+        if (result.length === 0){next();}
+        else{res.json(result);};
+    }),(error)=>{next();};                            //if the module return false then fallback
 });
 
 //-------------Send JSON of complains by using name and type parameters by GET method--------
-app.get('/getComplainByUserAndType/:user_name/:type_name',
+app.get('/getComplainByUserAndType/:user_name/:type_name/',
     (req,res,next)=>{
    let user = req.params.user_name;                                 //catch the user name parameter
    let type = req.params.type_name;                                 //catch the type parameter
-   let parameters = complainModule.getByUserAndType(user,type);     //call the function
-
-    if (parameters == false){
-       next();
-    }else{
-    res.status(200).json(parameters);
-    }
+   dbFunctions.getByUserAndType(type,user).then((result)=>{
+       if (result.length===0){next();}
+       else{res.json(result);};
+   }),(error)=>{next();};
 });
 
 //-------------------the API documentation----------------------

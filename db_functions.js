@@ -35,7 +35,7 @@ exports.getByType = (type)=>{
 
 exports.getByUserAndType = (type,userName)=>{
     return new Promise((resolve,reject)=>{
-            Complain.find({type:type,"complains.name":{$eq:userName}},(err,res)=>{
+            Complain.find({type:type,"complains.name":userName},(err,res)=>{
             if (err) reject (err);
             else resolve(res);
         });
